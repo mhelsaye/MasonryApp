@@ -645,9 +645,9 @@ The effective cross-section per one-meter width is illustrated in the Figure bel
 )
 def effective_Section_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e, W):
     if S == 200 *mm:
-        img = Image.open(assets\Effective Section _ FG.png")
+        img = "assets\Effective Section_FG.png"
     else:
-        img = Image.open(assets\Effective Section _ PG.png")
+        img = "assets\Effective Section_PG.png"
     
     width, height = img.size
 
@@ -1223,9 +1223,9 @@ def Icr_effective_Section_image1 (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_
     t, beff_m_1, beff_m_2, As,Aseff_m, bg_m, bug_m_1, bug_m_2,A_gr,A_ug_1,A_ug_2 , Ae_1, Ae_2, fm_e_1, fm_e_2, I_gross_gr, I_gross_ug_1, I_gross_eff, I_cr_eff, kd, n , E_m, ek, rho_SW, rho_g, rho_ug, fm_g, fm_ug, tf=cross_section(t, S,bar,fblock)
     
     if S == 200*mm:
-        img = Image.open(assets\Icr_insideFaceshell_Fully Grouted.png")
+        img = "assets\Icr_insideFaceshell_Fully Grouted.png"
     else:
-        img = Image.open(assets\Icr_insideFaceshell.png")
+        img = "assets\Icr_insideFaceshell.png"
 
     width, height = img.size
     
@@ -1354,9 +1354,9 @@ def Icr_effective_Section_image1 (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_
 def EquilbruimSection_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e, W):
 
     if S == 200*mm:
-         img = Image.open(assets\EquilibruimSection_FG.png")  
+         img = "assets\EquilibruimSection_FG.png"
     else:         
-        img = Image.open(assets\EquilibruimSection_PG.png")
+        img = "assets\EquilibruimSection_PG.png"
 
     fig = go.Figure()
 
