@@ -12,6 +12,7 @@ import io
 import base64
 import numpy as np
 from scipy.optimize import fsolve
+from dash import get_asset_url
 import sympy as sp
 from App_Functions import  solve_betaC,  calculate_point2, calculate_point3, calculate_pure_moment, generate_side_view, cross_section, Icr_function, Moment_Calculation, draw_blocks_plotly, generate_side_view
 
@@ -58,10 +59,6 @@ P_S_default = 0  *kN  #
 e_default = 0  *mm # mm
 W_default = 1 *kPa # kPa
 
-def load_image_base64(image_path):
-    with open(image_path, 'rb') as f:
-        encoded = base64.b64encode(f.read()).decode()
-    return f"data:image/png;base64,{encoded}"
 
 # Layout
 
@@ -645,13 +642,13 @@ The effective cross-section per one-meter width is illustrated in the Figure bel
 )
 def effective_Section_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e, W):
     if S == 200 *mm:
-        img = "assets\Effective Section_FG.png"
+        img =get_asset_url("Effective Section_FG.png")
     else:
-        img = "assets\Effective Section_PG.png"
+        img =get_asset_url("Effective Section_PG.png")
     
     width, height = img.size
 
-    img = load_image_base64(img)
+
     # Get cross section properties
     t, beff_m_1, beff_m_2, As,Aseff_m, bg_m, bug_m_1, bug_m_2,A_gr,A_ug_1,A_ug_2 , Ae_1, Ae_2, fm_e_1, fm_e_2, I_gross_gr, I_gross_ug_1, I_gross_eff, I_cr_eff, kd, n , E_m, ek, rho_SW, rho_g, rho_ug, fm_g, fm_ug, tf=cross_section(t, S,bar,fblock)
 
@@ -1223,13 +1220,12 @@ def Icr_effective_Section_image1 (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_
     t, beff_m_1, beff_m_2, As,Aseff_m, bg_m, bug_m_1, bug_m_2,A_gr,A_ug_1,A_ug_2 , Ae_1, Ae_2, fm_e_1, fm_e_2, I_gross_gr, I_gross_ug_1, I_gross_eff, I_cr_eff, kd, n , E_m, ek, rho_SW, rho_g, rho_ug, fm_g, fm_ug, tf=cross_section(t, S,bar,fblock)
     
     if S == 200*mm:
-        img = "assets\Icr_insideFaceshell_Fully Grouted.png"
+        img =get_asset_url("Icr_insideFaceshell_Fully Grouted.png")
     else:
-        img = "assets\Icr_insideFaceshell.png"
+        img =get_asset_url("Icr_insideFaceshell.png")
 
     width, height = img.size
     
-    img = load_image_base64(img)
     t *= 1000
     beff_m_1 *= 1000
     beff_m_2 *= 1000
@@ -1354,15 +1350,14 @@ def Icr_effective_Section_image1 (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_
 def EquilbruimSection_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e, W):
 
     if S == 200*mm:
-         img = "assets\EquilibruimSection_FG.png"
+         img =get_asset_url("EquilibruimSection_FG.png")
     else:         
-        img = "assets\EquilibruimSection_PG.png"
+        img =get_asset_url("EquilibruimSection_PG.png")
 
     fig = go.Figure()
 
     width, height = img.size
 
-    img = load_image_base64(img)
     # Add image as background
     fig.update_layout(
         images=[dict(
