@@ -17,9 +17,8 @@ import sympy as sp
 from App_Functions import  solve_betaC,  calculate_point2, calculate_point3, calculate_pure_moment, generate_side_view, cross_section, Icr_function, Moment_Calculation, draw_blocks_plotly, generate_side_view
 
 # Initialize Dash app
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], assets_folder='assets')
 server = app.server
-
 
 # units 
 mm = 0.001
@@ -646,7 +645,7 @@ def effective_Section_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e,
     else:
         img =get_asset_url("Effective Section_PG.png")
     
-    width, height = img.size
+    width, height = 1000,600
 
 
     # Get cross section properties
