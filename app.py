@@ -642,10 +642,12 @@ The effective cross-section per one-meter width is illustrated in the Figure bel
 def effective_Section_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e, W):
     if S == 200 *mm:
         img =get_asset_url("Effective Section_FG.png")
+        width, height = 996,632
     else:
         img =get_asset_url("Effective Section_PG.png")
+        width, height = 906,582
     
-    width, height = 1000,600
+    
 
 
     # Get cross section properties
