@@ -3,7 +3,7 @@ from dash import dcc, html, Input, Output, State
 import dash_bootstrap_components as dbc
 import plotly.graph_objects as go
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import fFigure
+from matplotlib.figure import Figure
 from matplotlib.patches import Rectangle
 import matplotlib.patches as patches
 from PIL import Image
