@@ -1538,4 +1538,4 @@ def Moment_resistanceText(n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e, W)
 
 app.layout = generate_layout()
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run_server(debug=True)
