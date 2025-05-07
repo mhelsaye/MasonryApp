@@ -641,15 +641,31 @@ The effective cross-section per one-meter width is illustrated in the Figure bel
 )
 def effective_Section_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e, W):
     if S == 200 *mm:
-        img =get_asset_url("Effective Section_FG.png")
-        width, height = 996,632
+        img_filename = "Effective Section_FG.png"
     else:
-        img =get_asset_url("Effective Section_PG.png")
-        width, height = 906,582
+        img_filename = "Effective Section_PG.png"
     
+    # Get the absolute path to the image
+    img_path = os.path.join('assets', img_filename)
     
-
-
+    # Check if file exists
+    if not os.path.isfile(img_path):
+        # Use URL as fallback or show error
+        img_source = app.get_asset_url(img_filename)
+        # For debugging, you can return a simple message
+        return html.Div([
+            f"Image not found at {img_path}. Attempted URL: {img_source}",
+            html.Br(),
+            "Available files in assets directory:",
+            html.Br(),
+            html.Pre(str(os.listdir('assets') if os.path.exists('assets') else "Assets directory not found"))
+        ])
+    
+    # If file exists, encode image to base64 for direct embedding
+    with open(img_path, 'rb') as img_file:
+        encoded_image = base64.b64encode(img_file.read()).decode('ascii')
+        img_source = f'data:image/png;base64,{encoded_image}'
+    img = img_source
     # Get cross section properties
     t, beff_m_1, beff_m_2, As,Aseff_m, bg_m, bug_m_1, bug_m_2,A_gr,A_ug_1,A_ug_2 , Ae_1, Ae_2, fm_e_1, fm_e_2, I_gross_gr, I_gross_ug_1, I_gross_eff, I_cr_eff, kd, n , E_m, ek, rho_SW, rho_g, rho_ug, fm_g, fm_ug, tf=cross_section(t, S,bar,fblock)
 
