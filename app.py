@@ -642,21 +642,12 @@ The effective cross-section per one-meter width is illustrated in the Figure bel
 )
 def effective_Section_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e, W):
     if S == 200 *mm:
-        img_filename = "Effective Section_FG.png"
+        img = "/assets/Effective Section_FG.png"
     else:
-        img_filename = "Effective Section_PG.png"
+        img = "/assets/Effective Section_PG.png"
     
-    # Get the absolute path to the image
-    try:
-        # Get absolute path to image
-        img_path = os.path.join(os.path.dirname(__file__), 'assets', img_filename)
-        
-        with Image.open(img_path) as img:
-            width, height = img.size  # Get actual dimensions
-    except Exception as e:
-        # Fallback values if image can't be loaded
-        width, height = 582, 906  # Set your default dimensions here
-        print(f"Error loading image: {str(e)}. Using fallback dimensions")
+
+    width, height = 582, 906  # Set your default dimensions here
 
     
     # Get cross section properties
