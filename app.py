@@ -9,6 +9,7 @@ import matplotlib.patches as patches
 from PIL import Image
 import sympy as sp
 import io
+import os
 import base64
 import numpy as np
 from scipy.optimize import fsolve
