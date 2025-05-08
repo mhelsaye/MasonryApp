@@ -130,7 +130,8 @@ def solve_betaC(faim, fm_e_1, Ae_1, fm_g, bg_m, fm_ug, tf, bug_m_1, t):
         Fg = faim * 0.85 * fm_g * betaC * bg_m * 1000
         F_ug_top = faim * 0.85 * fm_ug * tf * bug_m_1 * 1000
         F_g_bottom = faim * 0.85 * fm_ug * (betaC - (t - tf)) * bug_m_1 * 1000 if betaC >= (t - tf) else 0
-        
+        F_g_bottom = faim * 0.85 * fm_ug * (t - tf) * bug_m_1 * 1000 if betaC >= t else F_g_bottom
+
         if betaC >= (t - tf):
             Pr = Fg + F_ug_top + F_g_bottom
         else:
@@ -146,14 +147,17 @@ def solve_betaC(faim, fm_e_1, Ae_1, fm_g, bg_m, fm_ug, tf, bug_m_1, t):
     Fg = faim * 0.85 * fm_g * betaC * bg_m * 1000
     F_ug_top = faim * 0.85 * fm_ug * tf * bug_m_1 * 1000
     F_g_bottom = faim * 0.85 * fm_ug * (betaC - (t - tf)) * bug_m_1 * 1000 if betaC >= (t - tf) else 0
-    
-    if betaC >= (t - tf):
-        Mr = Fg *(t/2 - betaC/2) + F_ug_top * (t/2-tf/2) - F_g_bottom * (t/2 - (tf-(t-betaC))/2) # moment at center 
-        Mr2 = Fg *betaC/2 + F_ug_top * tf/2 + F_g_bottom * (t+(tf-(t-betaC)/2)-tf) - Prmax * t/2 # moment at top 
+    if betaC >= t: 
+        Mr2 = Fg *betaC/2 + F_ug_top * tf/2 + F_g_bottom * (t - tf/2) - Prmax * t/2 # moment at top 
+
+    elif betaC >= (t - tf):
+        Mr = Fg *(t/2 - betaC/2) + F_ug_top * (t/2-tf/2) - F_g_bottom * (betaC/2-tf/2) # moment at center 
+        Mr2 = Fg *betaC/2 + F_ug_top * tf/2 + F_g_bottom * (betaC/2 + t/2 - tf/2) - Prmax * t/2 # moment at top 
     else : 
         Mr = Fg * (t/2 - betaC/2) + F_ug_top * (t/2 - tf/2) # moment at center
         Mr2 = Fg *betaC/2 + F_ug_top * tf/2  - Prmax * t/2 # moment at top 
-    return betaC, Fg, F_ug_top, F_g_bottom, Prmax, Mr
+    print ( betaC, Mr2, Mr, bg_m, bug_m_1)    
+    return betaC, Fg, F_ug_top, F_g_bottom, Prmax, -Mr2
 
 
 def calculate_point2(betaC1, faim, fm_g, bg_m, fm_ug, tf, bug_m_1, t, d, num_points=3):
