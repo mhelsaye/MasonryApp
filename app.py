@@ -647,7 +647,7 @@ def effective_Section_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e,
         img = "assets/EffectiveSection_PG.png"
         
     with open(img, 'rb') as f:
-    encoded_image = base64.b64encode(f.read()).decode()
+        encoded_image = base64.b64encode(f.read()).decode()
     
     height, width = 582, 906  # Set your default dimensions here
 
