@@ -647,7 +647,7 @@ def effective_Section_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e,
         img = "https://raw.githubusercontent.com/mhelsaye/MasonryApp/4681f2823a73203bb38cca680d3ce0f9af9f1329/assets/EffectiveSection%20_%20PG.png"
     
     
-    with Image.open(image_path) as img:
+    with Image.open(img) as img:
         width, height = img.size
         
     
@@ -1229,7 +1229,7 @@ def Icr_effective_Section_image1 (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_
     else:
         img ="https://raw.githubusercontent.com/mhelsaye/MasonryApp/4681f2823a73203bb38cca680d3ce0f9af9f1329/assets/Icr_insideFaceshell.png"
 
-    with Image.open(image_path) as img:
+    with Image.open(img) as img:
         width, height = img.size
     
     t *= 1000
@@ -1360,7 +1360,7 @@ def EquilbruimSection_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e,
     else:         
         img ="https://raw.githubusercontent.com/mhelsaye/MasonryApp/4681f2823a73203bb38cca680d3ce0f9af9f1329/assets/EquilibruimSection_PG.png"
     
-    with Image.open(image_path) as img:
+    with Image.open(img) as img:
         width, height = img.size
 
     
