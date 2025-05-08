@@ -2,11 +2,12 @@ import dash
 from dash import dcc, html, Input, Output, State
 import dash_bootstrap_components as dbc
 import plotly.graph_objects as go
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
-from matplotlib.patches import Rectangle
-import matplotlib.patches as patches
+
+
+import requests
 from PIL import Image
+from io import BytesIO
+
 import sympy as sp
 import io
 import os
@@ -647,9 +648,9 @@ def effective_Section_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e,
         img = "https://raw.githubusercontent.com/mhelsaye/MasonryApp/4681f2823a73203bb38cca680d3ce0f9af9f1329/assets/EffectiveSection%20_%20PG.png"
     
     
-    with Image.open(img) as img:
-        width, height = img.size
-        
+    response = requests.get(img)
+    img = Image.open(BytesIO(response.content))
+    width, height = img.size
     
    # height, width = 582, 906  # Set your default dimensions here
 
@@ -1228,9 +1229,9 @@ def Icr_effective_Section_image1 (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_
         img ="https://raw.githubusercontent.com/mhelsaye/MasonryApp/4681f2823a73203bb38cca680d3ce0f9af9f1329/assets/Icr_insideFaceshell_Fully%20Grouted.png"
     else:
         img ="https://raw.githubusercontent.com/mhelsaye/MasonryApp/4681f2823a73203bb38cca680d3ce0f9af9f1329/assets/Icr_insideFaceshell.png"
-
-    with Image.open(img) as img:
-        width, height = img.size
+    response = requests.get(img)
+    img = Image.open(BytesIO(response.content))
+    width, height = img.size
     
     t *= 1000
     beff_m_1 *= 1000
@@ -1360,8 +1361,9 @@ def EquilbruimSection_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e,
     else:         
         img ="https://raw.githubusercontent.com/mhelsaye/MasonryApp/4681f2823a73203bb38cca680d3ce0f9af9f1329/assets/EquilibruimSection_PG.png"
     
-    with Image.open(img) as img:
-        width, height = img.size
+    response = requests.get(img)
+    img = Image.open(BytesIO(response.content))
+    width, height = img.size
 
     
     fig = go.Figure()
