@@ -642,12 +642,10 @@ The effective cross-section per one-meter width is illustrated in the Figure bel
 )
 def effective_Section_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e, W):
     if S == 200 *mm:
-        img = "assets/EffectiveSection_FG.png"
+        img = "https://github.com/mhelsaye/MasonryApp/blob/da81a4a712ce60672d95add16591eeb876e3d37f/assets/EffectiveSection%20_%20FG.png"
     else:
-        img = "assets/EffectiveSection_PG.png"
+        img = "https://github.com/mhelsaye/MasonryApp/blob/da81a4a712ce60672d95add16591eeb876e3d37f/assets/EffectiveSection%20_%20PG.png"
         
-    with open(img, 'rb') as f:
-        encoded_image = base64.b64encode(f.read()).decode()
     
     height, width = 582, 906  # Set your default dimensions here
 
