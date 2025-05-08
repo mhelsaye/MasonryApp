@@ -1162,11 +1162,14 @@ The following table summarizes the results for each load case:
     moment_calc_body = html.Tbody([
         html.Tr([
             html.Td(str(i + 1)),
-            html.Td(f"{Mt_F_list[i]:.2f}"),
+            html.Td("Buckling Failure" if Mt_F_list[i] <0  else f"{Mt_F_list[i]:.2f}", style={
+                    "color": "red" if Mt_F_list[i] < 0 else "black",
+                     "fontWeight": "bold"
+                                            }),
             html.Td(f"{M_F_list[i]:.2f}"),
             html.Td(f"{P_F_list[i]:.2f}"),
             html.Td(f"{Pcr_list[i]:.2f}"),
-            html.Td(f"{Mag_list[i]:.2f}"),
+            html.Td("N/A" if Mag_list[i] < 0 else f"{Mag_list[i]:.2f}"),
             html.Td(f"{Cm_list[i]:.2f}"),
             html.Td(f"{EI_eff_list[i] :.2f}"),
             html.Td(f"{EI_eff_raw[i] :.2f}"),
@@ -1409,7 +1412,7 @@ def EquilbruimSection_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e,
     )
     Moment_resistance_section_header = f"""
     ### **Determining Moment Resistance ($$M_r$$)**
-    For illustration purpose, the following figure illustrates a case where the neutral axis exits in the faceshell. (Note that the NA axis locastion will change the calculation process):"""
+    For illustration purposes, the following figure illustrates a case where the neutral axis exits in the faceshell. (Note that the NA axis location will change the calculation process):"""
     return html.Div([
                     dcc.Markdown(Moment_resistance_section_header, mathjax=True,style={
             "fontSize": "20px"
@@ -1520,12 +1523,12 @@ def Moment_resistanceText(n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e, W)
         html.Tr([
             html.Td(str(i + 1)),
             html.Td(f"{P_F[i]:.2f}"),
-            html.Td(f"{M_F_list[i]:.2f}"),
+            html.Td("N/A" if M_F_list[i] < 0 else f"{M_F_list[i]:.2f}"),
             html.Td(f"{M_interpolated[i]:.2f}"),
             html.Td(
-            "✅ Pass" if M_interpolated[i] >= M_F_list[i] else "❌Fail",
+            "❌ Buckling Failure" if M_F_list[i]<0 else ("✅ Pass" if M_interpolated[i] >= M_F_list[i] else "❌ Fail"),
             style={
-                "color": "green" if M_interpolated[i] >= M_F_list[i] else "red",
+                "color": "red" if M_F_list[i]<0 else ("green" if M_interpolated[i] >= M_F_list[i] else "red"),
                 "fontWeight": "bold"
             })
         ]) for i in range(len(P_F))
