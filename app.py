@@ -647,12 +647,18 @@ def effective_Section_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e,
         img_filename = "Effective Section_PG.png"
     
     # Get the absolute path to the image
-    img_path = os.path.join('assets', img_filename)
+    try:
+        # Get absolute path to image
+        img_path = os.path.join(os.path.dirname(__file__), 'assets', img_filename)
+        
+        with Image.open(img_path) as img:
+            width, height = img.size  # Get actual dimensions
+    except Exception as e:
+        # Fallback values if image can't be loaded
+        width, height = 582, 906  # Set your default dimensions here
+        print(f"Error loading image: {str(e)}. Using fallback dimensions")
+
     
-    img = app.get_asset_url(img_filename)
-
-
-    height,width = 582, 906
     # Get cross section properties
     t, beff_m_1, beff_m_2, As,Aseff_m, bg_m, bug_m_1, bug_m_2,A_gr,A_ug_1,A_ug_2 , Ae_1, Ae_2, fm_e_1, fm_e_2, I_gross_gr, I_gross_ug_1, I_gross_eff, I_cr_eff, kd, n , E_m, ek, rho_SW, rho_g, rho_ug, fm_g, fm_ug, tf=cross_section(t, S,bar,fblock)
 
