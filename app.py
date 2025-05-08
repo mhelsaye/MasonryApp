@@ -642,13 +642,16 @@ The effective cross-section per one-meter width is illustrated in the Figure bel
 )
 def effective_Section_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e, W):
     if S == 200 *mm:
-        img = "https://imgur.com/a/bTwGitd"
+        img = "https://raw.githubusercontent.com/mhelsaye/MasonryApp/refs/heads/main/assets/EffectiveSection%20_%20FG.png"
     else:
-        img = "https://raw.githubusercontent.com/mhelsaye/MasonryApp/da81a4a712ce60672d95add16591eeb876e3d37f/assets/EffectiveSection%20_%20PG.png"
-
+        img = "https://raw.githubusercontent.com/mhelsaye/MasonryApp/refs/heads/main/assets/EffectiveSection%20_%20PG.png"
+    
+    
+    with Image.open(image_path) as img:
+        width, height = img.size
         
     
-    height, width = 582, 906  # Set your default dimensions here
+   # height, width = 582, 906  # Set your default dimensions here
 
     
     # Get cross section properties
@@ -1222,11 +1225,12 @@ def Icr_effective_Section_image1 (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_
     t, beff_m_1, beff_m_2, As,Aseff_m, bg_m, bug_m_1, bug_m_2,A_gr,A_ug_1,A_ug_2 , Ae_1, Ae_2, fm_e_1, fm_e_2, I_gross_gr, I_gross_ug_1, I_gross_eff, I_cr_eff, kd, n , E_m, ek, rho_SW, rho_g, rho_ug, fm_g, fm_ug, tf=cross_section(t, S,bar,fblock)
     
     if S == 200*mm:
-        img =get_asset_url("Icr_insideFaceshell_Fully Grouted.png")
+        img ="https://raw.githubusercontent.com/mhelsaye/MasonryApp/refs/heads/main/assets/Icr_insideFaceshell.png"
     else:
-        img =get_asset_url("Icr_insideFaceshell.png")
+        img ="https://raw.githubusercontent.com/mhelsaye/MasonryApp/refs/heads/main/assets/Icr_insideFaceshell_Fully%20Grouted.png"
 
-    width, height = img.size
+    with Image.open(image_path) as img:
+        width, height = img.size
     
     t *= 1000
     beff_m_1 *= 1000
@@ -1352,13 +1356,15 @@ def Icr_effective_Section_image1 (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_
 def EquilbruimSection_image (n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, e, W):
 
     if S == 200*mm:
-         img =get_asset_url("EquilibruimSection_FG.png")
+         img ="https://raw.githubusercontent.com/mhelsaye/MasonryApp/refs/heads/main/assets/EquilibruimSection_FG.png"
     else:         
-        img =get_asset_url("EquilibruimSection_PG.png")
+        img ="https://raw.githubusercontent.com/mhelsaye/MasonryApp/refs/heads/main/assets/EquilibruimSection_PG.png"
+    
+    with Image.open(image_path) as img:
+        width, height = img.size
 
+    
     fig = go.Figure()
-
-    width, height = img.size
 
     # Add image as background
     fig.update_layout(
