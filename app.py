@@ -31,12 +31,6 @@ kPa = 1
 MPa = 1000
 
 # Inputs 
-H = 8 *m 
-t = 240 *mm  
-s = 1200 *mm 
-db = 25 *mm
-d = t/2 
-fblock= 25 
 faim = 0.6
 fais = 0.85
 emu = 0.003
@@ -372,7 +366,7 @@ def update_interaction_diagram(n_clicks, H, t, fblock, S, bar, P_DL, P_LL, P_S, 
         
     # Get cross section properties
     t, beff_m_1, beff_m_2, As,Aseff_m, bg_m, bug_m_1, bug_m_2,A_gr,A_ug_1,A_ug_2 , Ae_1, Ae_2, fm_e_1, fm_e_2, I_gross_gr, I_gross_ug_1, I_gross_eff, I_cr_eff, kd, n , E_m, ek, rho_SW, rho_g, rho_ug, fm_g, fm_ug, tf=cross_section(t, S,bar,fblock)
-    
+    d=t/2
     # Calculate maximum point
     PMax = solve_betaC(0.6,   fm_e_1, Ae_1, fm_g, bg_m, fm_ug, tf, bug_m_1, t)
     betaC1 = float(PMax[0])
